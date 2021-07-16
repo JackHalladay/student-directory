@@ -1,20 +1,20 @@
 def interactive_menu
-  students []
+  students = []
   loop do
     #1. print the menu and ask the user what to do
     puts "1. Input the students"
     puts "2. Show students"
-    puts "3 Exit"
+    puts "3. Exit"
     #2. read the input and save it into a variable
     selection = gets.chomp
     #3. do what the user has asked
     case selection
     when "1"
-      students = input_students
+      students = input_students(students)
     when "2"
       print_header
       prints(students)
-      print_footer
+      print_footer(students)
     when "3"
       exit
     else
@@ -23,11 +23,10 @@ def interactive_menu
   end
 end
 
-def input_students
+def input_students(students)
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   #creates and empty student array
-  students = []
   name = gets.chomp
   #when name is not empty, repeat
   while !name.empty? do
@@ -60,14 +59,10 @@ end
 #prints the footer
 def print_footer(students)
   if students.count > 0
-    print "Overall, we have #{students.count} great students"
+    puts "Overall, we have #{students.count} great students"
   else
-    print "There are no current students"
+    puts "There are no current students"
   end
 end
 
 interactive_menu
-students = input_students
-print_header
-prints(students)
-print_footer(students)
